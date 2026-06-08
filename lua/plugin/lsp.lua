@@ -1,0 +1,549 @@
+local servers = {
+  "pyright",
+  "ruff",
+  "vtsls",
+  "html",
+  "cssls",
+  "tailwindcss",
+  "lua_ls",
+  "jsonls",
+  "yamlls",
+  "marksman",
+}
+
+return {
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = servers
+    },
+    dependencies = {
+      {
+        "neovim/nvim-lspconfig",
+        config = function()
+          vim.lsp.config("pyright", {
+            settings = {
+              pyright = { disableOrganizeImports = true },
+              python = { analysis = { ignore = { "*" } } },
+            },
+          })
+
+
+          vim.lsp.config("lua_ls", {
+            settings = {
+              Lua = {
+                diagnostics = { globals = { "vim" } },
+              },
+            },
+          })
+        end
+      },
+      {
+        "mason-org/mason.nvim",
+        opts = {
+          pip = {
+            upgrade_pip = true
+          },
+          ui = {
+            border = "rounded",
+            backdrop = 60,
+            width = 0.8,
+            height = 0.8,
+            icons = {
+              package_installed = "✓",
+              package_pending = "➜",
+              package_uninstalled = "✗",
+            },
+          }
+        }
+      }
+    }
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = "LspAttach",
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        opts = {
+          select = {
+            lookahead = true,
+            selection_modes = {
+              ["@parameter.outer"] = "v",
+              ["@function.outer"] = "V",
+            },
+            include_surrounding_whitespace = false,
+          },
+        }
+      },
+      {
+        "stevearc/conform.nvim",
+        opts = {
+          formatters_by_ft = {
+            lua = { "lua_ls" },
+            yaml = { "prettier" },
+            toml = { "taplo" },
+            python = { "black" },
+            javascript = { "oxfmt" },
+            typescript = { "oxfmt" },
+          },
+        }
+      }
+    },
+    keys = {
+      {
+        "am",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@function.outer", "textobjects")
+        end,
+        desc = "Select function outer"
+      },
+      {
+        "im",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@function.inner", "textobjects")
+        end,
+        desc = "Select function inner"
+      },
+      {
+        "ac",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@class.outer", "textobjects")
+        end,
+        desc = "Select class outer"
+      },
+      {
+        "ic",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@class.inner", "textobjects")
+        end,
+        desc = "Select class inner"
+      },
+      {
+        "af",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@call.outer", "textobjects")
+        end,
+        desc = "Select call outer"
+      },
+      {
+        "if",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@call.inner", "textobjects")
+        end,
+        desc = "Select call inner"
+      },
+      {
+        "ad",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@conditional.outer", "textobjects")
+        end,
+        desc = "Select conditional outer"
+      },
+      {
+        "id",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@conditional.inner", "textobjects")
+        end,
+        desc = "Select conditional inner"
+      },
+      {
+        "al",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@loop.outer", "textobjects")
+        end,
+        desc = "Select loop outer"
+      },
+      {
+        "il",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@loop.inner", "textobjects")
+        end,
+        desc = "Select loop inner"
+      },
+      {
+        "aa",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@parameter.outer", "textobjects")
+        end,
+        desc = "Select parameter outer"
+      },
+      {
+        "ia",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@parameter.inner", "textobjects")
+        end,
+        desc = "Select parameter inner"
+      },
+      {
+        "av",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@assignment.outer", "textobjects")
+        end,
+        desc = "Select assignment outer"
+      },
+      {
+        "iv",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@assignment.inner", "textobjects")
+        end,
+        desc = "Select assignment inner"
+      },
+      {
+        "ls",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@assignment.lhs", "textobjects")
+        end,
+        desc = "Select assignment left-hand side"
+      },
+      {
+        "rs",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@assignment.rhs", "textobjects")
+        end,
+        desc = "Select assignment right-hand side"
+      },
+      {
+        "ab",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@block.outer", "textobjects")
+        end,
+        desc = "Select block outer"
+      },
+      {
+        "ib",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@block.inner", "textobjects")
+        end,
+        desc = "Select block inner"
+      },
+      {
+        "ak",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@comment.outer", "textobjects")
+        end,
+        desc = "Select comment outer"
+      },
+      {
+        "ik",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@comment.inner", "textobjects")
+        end,
+        desc = "Select comment inner"
+      },
+      {
+        "ar",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@return.outer", "textobjects")
+        end,
+        desc = "Select return outer"
+      },
+      {
+        "ir",
+        mode = { "v", "o" },
+        function()
+          require("nvim-treesitter-textobjects.select")
+              .select_textobject("@return.inner", "textobjects")
+        end,
+        desc = "Select return inner"
+      },
+      {
+        "]m",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_next_start(
+            "@function.outer", "textobjects")
+        end,
+        desc = "Next function start"
+      },
+      {
+        "]R",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_next_end(
+            "@return.outer", "textobjects")
+        end,
+        desc = "Next return end"
+      },
+      {
+        "]k",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_next_start(
+            "@comment.outer", "textobjects")
+        end,
+        desc = "Next comment start"
+      },
+      {
+        "]K",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_next_end(
+            "@comment.outer", "textobjects")
+        end,
+        desc = "Next comment end"
+      },
+      {
+        "]r",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_next_start(
+            "@return.outer", "textobjects")
+        end,
+        desc = "Next return start"
+      },
+      {
+        "]c",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_next_start(
+            "@class.outer", "textobjects")
+        end,
+        desc = "Next class start"
+      },
+      {
+        "]d",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_next_start(
+            "@conditional.outer", "textobjects")
+        end,
+        desc = "Next conditional start"
+      },
+      {
+        "]l",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_next_start(
+            "@loop.outer", "textobjects")
+        end,
+        desc = "Next loop start"
+      },
+      {
+        "]a",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_next_start(
+            "@parameter.inner", "textobjects")
+        end,
+        desc = "Next parameter start"
+      },
+      {
+        "]M",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_next_end(
+            "@function.outer", "textobjects")
+        end,
+        desc = "Next function end"
+      },
+      {
+        "]C",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_next_end(
+            "@class.outer", "textobjects")
+        end,
+        desc = "Next class end"
+      },
+      {
+        "[k",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_previous_start(
+            "@comment.outer", "textobjects")
+        end,
+        desc = "Next comment start"
+      },
+      {
+        "[K",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_previous_end(
+            "@comment.outer", "textobjects")
+        end,
+        desc = "Next comment end"
+      },
+      {
+        "[R",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_previous_end(
+            "@return.outer", "textobjects")
+        end,
+        desc = "Previous return end"
+      },
+      {
+        "[r",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_previous_start(
+            "@return.outer", "textobjects")
+        end,
+        desc = "Previous return start"
+      },
+      {
+        "[m",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move")
+              .goto_previous_start("@function.outer", "textobjects")
+        end,
+        desc = "Previous function start"
+      },
+      {
+        "[c",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move")
+              .goto_previous_start("@class.outer", "textobjects")
+        end,
+        desc = "Previous class start"
+      },
+      {
+        "[d",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move")
+              .goto_previous_start("@conditional.outer", "textobjects")
+        end,
+        desc = "Previous conditional start"
+      },
+      {
+        "[l",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move")
+              .goto_previous_start("@loop.outer", "textobjects")
+        end,
+        desc = "Previous loop start"
+      },
+      {
+        "[a",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move")
+              .goto_previous_start("@parameter.inner", "textobjects")
+        end,
+        desc = "Previous parameter start"
+      },
+      {
+        "[M",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_previous_end(
+            "@function.outer", "textobjects")
+        end,
+        desc = "Previous function end"
+      },
+      {
+        "[C",
+        mode = { "n", "v" },
+        function()
+          require("nvim-treesitter-textobjects.move").goto_previous_end(
+            "@class.outer", "textobjects")
+        end,
+        desc = "Previous class end"
+      },
+      {
+        "<leader>csan",
+        mode = "n",
+        function()
+          require("nvim-treesitter-textobjects.swap").swap_next(
+            "@parameter.inner")
+        end,
+        desc = "Swap with next"
+      },
+      {
+        "<leader>csmn",
+        mode = "n",
+        function()
+          require("nvim-treesitter-textobjects.swap").swap_next(
+            "@function.outer")
+        end,
+        desc = "Swap with next"
+      },
+      {
+        "<leader>csap",
+        mode = "n",
+        function()
+          require("nvim-treesitter-textobjects.swap").swap_previous(
+            "@parameter.inner")
+        end,
+        desc = "Swap with previous"
+      },
+      {
+        "<leader>csmp",
+        mode = "n",
+        function()
+          require("nvim-treesitter-textobjects.swap").swap_previous(
+            "@function.outer")
+        end,
+        desc = "Swap with previous"
+      },
+    }
+  },
+  {
+    "saecki/crates.nvim",
+    ft = { "toml" },
+    opts = {
+      completion = {
+        crates = {
+          enabled = true,
+        },
+      },
+      lsp = {
+        enabled = true,
+        actions = true,
+        completion = true,
+        hover = true,
+      },
+    }
+  },
+  {
+    "mrcjkb/rustaceanvim",
+    version = '^9',
+  }
+}
