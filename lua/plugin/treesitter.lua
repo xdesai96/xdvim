@@ -1,64 +1,4 @@
-local servers = {
-  "pyright",
-  "ruff",
-  "vtsls",
-  "html",
-  "cssls",
-  "tailwindcss",
-  "lua_ls",
-  "jsonls",
-  "yamlls",
-  "marksman",
-}
-
 return {
-  {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = servers
-    },
-    dependencies = {
-      {
-        "neovim/nvim-lspconfig",
-        config = function()
-          vim.lsp.config("pyright", {
-            settings = {
-              pyright = { disableOrganizeImports = true },
-              python = { analysis = { ignore = { "*" } } },
-            },
-          })
-
-
-          vim.lsp.config("lua_ls", {
-            settings = {
-              Lua = {
-                diagnostics = { globals = { "vim" } },
-              },
-            },
-          })
-        end
-      },
-      {
-        "mason-org/mason.nvim",
-        opts = {
-          pip = {
-            upgrade_pip = true
-          },
-          ui = {
-            border = "rounded",
-            backdrop = 60,
-            width = 0.8,
-            height = 0.8,
-            icons = {
-              package_installed = "✓",
-              package_pending = "➜",
-              package_uninstalled = "✗",
-            },
-          }
-        }
-      }
-    }
-  },
   {
     "nvim-treesitter/nvim-treesitter",
     event = "LspAttach",
@@ -76,19 +16,6 @@ return {
           },
         }
       },
-      {
-        "stevearc/conform.nvim",
-        opts = {
-          formatters_by_ft = {
-            lua = { "lua_ls" },
-            yaml = { "prettier" },
-            toml = { "taplo" },
-            python = { "black" },
-            javascript = { "oxfmt" },
-            typescript = { "oxfmt" },
-          },
-        }
-      }
     },
     keys = {
       {
@@ -182,24 +109,6 @@ return {
         desc = "Select loop inner"
       },
       {
-        "aa",
-        mode = { "v", "o" },
-        function()
-          require("nvim-treesitter-textobjects.select")
-              .select_textobject("@parameter.outer", "textobjects")
-        end,
-        desc = "Select parameter outer"
-      },
-      {
-        "ia",
-        mode = { "v", "o" },
-        function()
-          require("nvim-treesitter-textobjects.select")
-              .select_textobject("@parameter.inner", "textobjects")
-        end,
-        desc = "Select parameter inner"
-      },
-      {
         "av",
         mode = { "v", "o" },
         function()
@@ -234,24 +143,6 @@ return {
               .select_textobject("@assignment.rhs", "textobjects")
         end,
         desc = "Select assignment right-hand side"
-      },
-      {
-        "ab",
-        mode = { "v", "o" },
-        function()
-          require("nvim-treesitter-textobjects.select")
-              .select_textobject("@block.outer", "textobjects")
-        end,
-        desc = "Select block outer"
-      },
-      {
-        "ib",
-        mode = { "v", "o" },
-        function()
-          require("nvim-treesitter-textobjects.select")
-              .select_textobject("@block.inner", "textobjects")
-        end,
-        desc = "Select block inner"
       },
       {
         "ak",
@@ -525,25 +416,4 @@ return {
       },
     }
   },
-  {
-    "saecki/crates.nvim",
-    ft = { "toml" },
-    opts = {
-      completion = {
-        crates = {
-          enabled = true,
-        },
-      },
-      lsp = {
-        enabled = true,
-        actions = true,
-        completion = true,
-        hover = true,
-      },
-    }
-  },
-  {
-    "mrcjkb/rustaceanvim",
-    version = '^9',
-  }
 }

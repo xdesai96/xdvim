@@ -18,6 +18,7 @@ vim.o.splitbelow = true
 vim.o.laststatus = 3
 vim.o.showmode = false
 vim.o.cmdheight = 0
+vim.o.colorcolumn = "80"
 
 vim.opt.fillchars = { eob = " " }
 
@@ -39,9 +40,3 @@ vim.o.expandtab = true
 vim.o.wrap = false
 
 vim.o.clipboard = "unnamedplus"
-
-vim.diagnostic.config({
-  virtual_text = true,
-  underline = true,
-  update_in_insert = false,
-})

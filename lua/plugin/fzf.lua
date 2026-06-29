@@ -1,49 +1,10 @@
 return {
-  { "nvim-mini/mini.completion", dependencies = { "nvim-mini/mini.snippets", dependencies = { { "rafamadriz/friendly-snippets" } } },            opts = {} },
-  { "nvim-mini/mini.move",       opts = {} },
-  { "nvim-mini/mini.operators",  opts = {} },
-  { "nvim-mini/mini.pairs",      opts = { modes = { insert = true, command = true, terminal = false }, markdown = true, skip_unbalanced = true } },
-  { "nvim-mini/mini.surround",   opts = {} },
-  {
-    "nvim-mini/mini.files",
-    lazy = false,
-    opts = {
-      content = {
-        prefix = function() end,
-      },
-      windows = {
-        max_number = 3,
-        width_focus = 30,
-      },
-    },
-    keys = {
-      {
-        "<leader>e",
-        function()
-          if not require("mini.files").close() then
-            require('mini.files').open(nil)
-          end
-        end,
-        desc = "Explorer"
-      }
-    }
-  },
   {
     "ibhagwan/fzf-lua",
     lazy = false,
-    opts = {
-      winopts = {
-        height = 0.9,
-        width = 0.9,
-        preview = {
-          layout = "horizontal",
-          vertical = "up:60%",
-        },
-      },
-    },
-    config = function(_, opts)
+    config = function()
       local fzf = require("fzf-lua")
-      fzf.setup(opts)
+      fzf.setup({"max-perf"})
       fzf.register_ui_select()
     end,
     keys = {
