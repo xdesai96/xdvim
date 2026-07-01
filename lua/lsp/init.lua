@@ -7,7 +7,7 @@ for name, config in pairs(servers) do
     vim.lsp.enable(name)
   else
     vim.notify(
-      ("LSP Error: %s not found (required by %s)"):format(config.cmd[1], name),
+      ("LSP: %s not found (required by %s)"):format(config.cmd[1], name),
       vim.log.levels.WARN
     )
   end
