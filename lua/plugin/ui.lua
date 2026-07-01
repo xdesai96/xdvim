@@ -17,11 +17,23 @@ return {
       header = header,
       footer = "",
       items = {
-        { name = "Files",      action = function() require("fzf-lua").files() end,        section = "" },
-        { name = "Grep",       action = function() require("fzf-lua").live_grep() end,    section = "" },
-        { name = "New Buffer", action = "enew",                                           section = "" },
-        { name = "Sessions",   action = function() require("mini.sessions").select() end, section = "" },
-        { name = "Quit",       action = "q",                                              section = "" },
+        { name = "Files", action = function() require("fzf-lua").files() end,     section = "" },
+        { name = "Grep",  action = function() require("fzf-lua").live_grep() end, section = "" },
+        {
+          name = "New File",
+          action = function()
+            vim.ui.input({ prompt = "New file name: " }, function(input)
+              if not input or input == "" then
+                return
+              end
+
+              vim.cmd("edit " .. input)
+            end)
+          end,
+          section = ""
+        },
+        { name = "Sessions", action = function() require("mini.sessions").select() end, section = "" },
+        { name = "Quit",     action = "q",                                              section = "" },
       },
     },
   },

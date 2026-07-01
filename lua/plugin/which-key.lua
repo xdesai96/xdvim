@@ -33,4 +33,15 @@ return {
       })
     end,
   },
+  {
+    "nvzone/showkeys",
+    opts = {
+      position = "top-right",
+      show_count = true,
+      maxkeys = 4,
+    },
+    keys = {
+      { "<leader>tk", "<cmd>ShowkeysToggle<cr>", desc = "Show keys toggle"},
+    }
+  },
 }
