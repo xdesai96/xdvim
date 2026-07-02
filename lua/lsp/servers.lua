@@ -41,9 +41,14 @@ return {
     filetypes = { 'python' },
     root_markers = { 'pyproject.toml', 'setup.py', '.git' },
   },
-  vtsls = {
-    cmd = { 'vtsls', '--stdio' },
-    filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  ts_ls = {
+    cmd = { 'typescript-language-server', '--stdio' },
+    filetypes = {
+      'javascript',
+      'javascriptreact',
+      'typescript',
+      'typescriptreact',
+    },
     root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
   },
   tailwindcss = {

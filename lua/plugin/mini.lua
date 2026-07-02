@@ -16,6 +16,9 @@ return {
         max_number = 3,
         width_focus = 30,
       },
+      mappings = {
+        go_in_plus = 'l',
+      },
     },
     keys = {
       {
@@ -40,8 +43,6 @@ return {
           set_mark("c", vim.fn.stdpath("config"), "Config")
           set_mark("w", vim.fn.getcwd(), "Working directory")
           set_mark("h", "~", "Home directory")
-          set_mark("g", "~/Github", "GitHub Projects")
-          set_mark("p", "~/Projects", "Projects")
         end,
       })
     end
