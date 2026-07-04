@@ -52,9 +52,26 @@ return {
     root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
   },
   tailwindcss = {
-    cmd = { 'tailwindcss', '--stdio' },
-    filetypes = { 'html', 'css', 'javascriptreact', 'typescriptreact', 'vue', 'svelte' },
-    root_markers = { 'tailwind.config.js', 'tailwind.config.ts', 'package.json', '.git' },
+    cmd = { 'tailwindcss-language-server', '--stdio' },
+    filetypes = {
+      -- html
+      'aspnetcorerazor', 'astro', 'astro-markdown', 'blade', 'clojure',
+      'django-html', 'htmldjango', 'edge', 'eelixir', 'elixir', 'ejs',
+      'erb', 'eruby', 'gohtml', 'gohtmltmpl', 'haml', 'handlebars', 'hbs',
+      'html', 'htmlangular', 'html-eex', 'heex', 'jade', 'leaf', 'liquid',
+      'markdown', 'mdx', 'mustache', 'njk', 'nunjucks', 'php', 'razor', 'slim',
+      'twig',
+      -- css
+      'css', 'less', 'postcss', 'sass', 'scss', 'stylus', 'sugarss',
+      -- js
+      'javascript', 'javascriptreact', 'reason', 'rescript', 'typescript',
+      'typescriptreact',
+      -- mixed
+      'vue', 'svelte', 'templ',
+    },
+    root_markers = {
+      'tailwind.config.js', 'tailwind.config.ts', 'package.json', '.git'
+    },
   },
   lua_ls = {
     cmd = { "lua-language-server" },
