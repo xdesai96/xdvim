@@ -1,10 +1,18 @@
 return {
-  { "nvim-mini/mini.ai",         opts = {} },
-  { "nvim-mini/mini.completion", dependencies = { "nvim-mini/mini.snippets", dependencies = { { "rafamadriz/friendly-snippets" } } },            opts = {} },
-  { "nvim-mini/mini.move",       opts = {} },
-  { "nvim-mini/mini.operators",  opts = {} },
-  { "nvim-mini/mini.pairs",      opts = { modes = { insert = true, command = true, terminal = false }, markdown = true, skip_unbalanced = true } },
-  { "nvim-mini/mini.surround",   opts = {} },
+  { "nvim-mini/mini.ai",        opts = {} },
+  { "nvim-mini/mini.move",      opts = {} },
+  { "nvim-mini/mini.operators", opts = {} },
+  { "nvim-mini/mini.pairs",     opts = { modes = { insert = true, command = true, terminal = false }, markdown = true, skip_unbalanced = true } },
+  { "nvim-mini/mini.surround",  opts = {} },
+  {
+    "nvim-mini/mini.completion",
+    opts = {}
+  },
+  {
+    "nvim-mini/mini.snippets",
+    dependencies = { { "rafamadriz/friendly-snippets" },
+      { "L3MON4D3/LuaSnip" } }
+  },
   {
     "nvim-mini/mini.files",
     lazy = false,
