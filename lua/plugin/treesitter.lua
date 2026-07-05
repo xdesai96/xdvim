@@ -378,42 +378,6 @@ return {
         end,
         desc = "Previous class end"
       },
-      {
-        "<leader>csan",
-        mode = "n",
-        function()
-          require("nvim-treesitter-textobjects.swap").swap_next(
-            "@parameter.inner")
-        end,
-        desc = "Swap with next"
-      },
-      {
-        "<leader>csmn",
-        mode = "n",
-        function()
-          require("nvim-treesitter-textobjects.swap").swap_next(
-            "@function.outer")
-        end,
-        desc = "Swap with next"
-      },
-      {
-        "<leader>csap",
-        mode = "n",
-        function()
-          require("nvim-treesitter-textobjects.swap").swap_previous(
-            "@parameter.inner")
-        end,
-        desc = "Swap with previous"
-      },
-      {
-        "<leader>csmp",
-        mode = "n",
-        function()
-          require("nvim-treesitter-textobjects.swap").swap_previous(
-            "@function.outer")
-        end,
-        desc = "Swap with previous"
-      },
-    }
+    },
   },
 }
