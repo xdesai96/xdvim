@@ -1,6 +1,5 @@
 vim.keymap.set({ "n", "v" }, "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>n", "<cmd>messages<CR>", { desc = "Last notifications" })
-vim.keymap.set({ "n", "v" }, "<leader>Q", "<cmd>qa!<CR>", { desc = "Quit all" })
 
 vim.keymap.set("n", "<leader>d", "<cmd>bp|bd #<cr>", { desc = "Delete buffer" })
 
