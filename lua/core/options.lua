@@ -6,7 +6,6 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 
-vim.o.hlsearch = false
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
@@ -27,8 +26,7 @@ vim.o.undofile = true
 vim.o.confirm = true
 vim.o.breakindent = true
 
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.o.hlsearch = false
 
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
