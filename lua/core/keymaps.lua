@@ -8,6 +8,8 @@ vim.keymap.set("n", "<leader>tt", "<cmd>term<cr>", { desc = "Terminal command pr
 vim.keymap.set("n", "<leader>tv", "<cmd>vert term<cr>", { desc = "Terminal command prompt (Vertical split)" })
 vim.keymap.set("n", "<leader>th", "<cmd>hor term<cr>", { desc = "Terminal command prompt (Horizontal split)" })
 
+vim.keymap.set('n', 'q', '<Nop>', { noremap = true, silent = true })
+
 vim.keymap.set("n", "<leader>d", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
 
 vim.keymap.set("n", "n", "nzzzv")

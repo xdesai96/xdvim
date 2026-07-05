@@ -10,6 +10,9 @@ local header = [[
 ]]
 
 return {
+
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", config = true },
+
   {
     "nvim-mini/mini.starter",
     opts = {
@@ -26,7 +29,6 @@ return {
               if not input or input == "" then
                 return
               end
-
               vim.cmd("edit " .. input)
             end)
           end,
@@ -37,13 +39,38 @@ return {
       },
     },
   },
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl",  config = true },
+
   {
-    "nvim-mini/mini.statusline",
+    "nvim-lualine/lualine.nvim",
     opts = {
-      use_icons = false
-    }
+      options = {
+        icons_enabled = false,
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        disabled_filetypes = {
+          statusline = { 'ministarter' },
+          tabline = { 'ministarter' }
+        }
+      },
+      tabline = {
+        lualine_a = {
+          {
+            'buffers',
+            symbols = { alternate_file = '' }
+          }
+        },
+      },
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'encoding', 'filetype' },
+        lualine_y = {},
+        lualine_z = { 'location' }
+      },
+    },
   },
+
   {
     "folke/tokyonight.nvim",
     priority = 1000,
@@ -59,5 +86,5 @@ return {
       vim.cmd.colorscheme("tokyonight")
     end
   },
-  { 'nvim-mini/mini.tabline',              version = "*", config = true }
+
 }
