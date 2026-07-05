@@ -1,5 +1,4 @@
 return {
-  { "max397574/better-escape.nvim", opts = {} },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -33,16 +32,5 @@ return {
         { "[",           group = "Previous Object" },
       })
     end,
-  },
-  {
-    "nvzone/showkeys",
-    opts = {
-      position = "top-right",
-      show_count = true,
-      maxkeys = 4,
-    },
-    keys = {
-      { "<leader>tk", "<cmd>ShowkeysToggle<cr>", desc = "Show keys toggle" },
-    }
   },
 }

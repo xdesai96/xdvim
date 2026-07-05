@@ -16,7 +16,6 @@ vim.o.swapfile = false
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.laststatus = 3
-vim.o.showmode = false
 vim.o.cmdheight = 0
 vim.o.colorcolumn = "80"
 
@@ -26,7 +25,8 @@ vim.o.undofile = true
 vim.o.confirm = true
 vim.o.breakindent = true
 
-vim.o.hlsearch = false
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
@@ -39,4 +39,3 @@ vim.o.expandtab = true
 vim.o.wrap = false
 
 vim.o.clipboard = "unnamedplus"
-
