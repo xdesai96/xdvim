@@ -8,16 +8,12 @@ vim.keymap.set("n", "<leader>tt", "<cmd>term<cr>", { desc = "Terminal command pr
 vim.keymap.set("n", "<leader>tv", "<cmd>vert term<cr>", { desc = "Terminal command prompt (Vertical split)" })
 vim.keymap.set("n", "<leader>th", "<cmd>hor term<cr>", { desc = "Terminal command prompt (Horizontal split)" })
 
-vim.keymap.set("n", "<leader>x", "<cmd>noh<CR>", { desc = "Clear search highlight" })
-
 vim.keymap.set("n", "<leader>d", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
 
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "*", "*zzzv")
 vim.keymap.set("n", "#", "#zzzv")
-
-vim.keymap.set("i", "jj", "<Esc>")
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
