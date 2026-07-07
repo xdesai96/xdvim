@@ -14,7 +14,7 @@ for name, config in pairs(servers) do
 end
 
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = false,
   underline = true,
   update_in_insert = true,
 })
