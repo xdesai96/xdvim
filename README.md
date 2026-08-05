@@ -1,3 +1,6 @@
+> :warning: **Deprecated:** This configuration is no longer maintained. 
+> I have migrated to [Nixvim](https://github.com/xdesai96/nixos-btw/tree/main/modules/home/nixvim).
+
 ## Requirements
 
 ### Base
